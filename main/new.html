@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>首页</title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			html {
+				touch-action: none;
+			}
+
+			#time {
+				text-align: right;
+			}
+
+			.mui-icon-speech {
+				margin-top: 50px;
+			}
+
+			textarea {
+				margin-bottom: 0px;
+			}
+
+			.pub {
+				padding-top: 10px;
+				font-size: 20px;
+				display: inline-block;
+				color: #AAAAAA;
+			}
+
+			button {
+				margin-top: 10px;
+				margin-bottom: 10px;
+				display: block;
+			}
+
+			.hint {
+				width: 100%;
+				color: red;
+				display: block;
+			}
+			
+			.btn{
+				display: block !important;
+				margin-top: 10px;
+				margin-bottom: 10px;
+				width: 100% !important;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- 头部导航 -->
+		<div class="mui-off-canvas-wrap mui-draggable" id="pan">
+			<!-- 主页面容器 -->
+			<div class="mui-inner-wrap">
+				<!-- 菜单容器 -->
+				<aside class="mui-off-canvas-left" id="leftnav">
+					<div class="mui-scroll-wrapper">
+						<div class="mui-scroll p">
+							这里这里fdsf
+						</div>
+					</div>
+				</aside>
+				<!-- 主页面标题 -->
+				<header class="mui-bar mui-bar-nav">
+					<a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left" href="#leftnav"></a>
+					<h1 class="mui-title">新日记</h1>
+				</header>
+				<!-- 主页面内容容器 -->
+				<div class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<form class="mui-input-row" style="margin: 10px 5px;">
+							<input type="text" class="mui-input-clear mui-input-speech" placeholder="标题">
+							<textarea id="textarea" rows="5" placeholder="可以语音输入哦->" class="mui-input-speech mui-input-clear"></textarea>
+							<button type="button"  id="Image">上传图片</button>
+							<p class="pub">是否公开</p>
+							<div class="mui-switch" id="mySwitch">
+								<div class="mui-switch-handle"></div>
+							</div>
+							<button type="button" data-loading-icon="mui-spinner mui-spinner-custom" class="mui-btn mui-btn-primary btn">确认</button>
+						</form>
+						<p id="time"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 底部导航 -->
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item" id="mynotes">
+				<span class="mui-icon mui-icon-person"></span>
+				<span class="mui-tab-label">我的记录</span>
+			</a>
+			<a class="mui-tab-item" id="allnotes">
+				<span class="mui-icon mui-icon-checkbox"></span>
+				<span class="mui-tab-label">大家的记录</span>
+			</a>
+			<a class="mui-tab-item mui-active" id="new">
+				<span class="mui-icon mui-icon-plusempty"></span>
+				<span class="mui-tab-label">新记录</span>
+			</a>
+		</nav>
+		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//时间戳
+			setInterval(function() {
+				var time = new Date();
+				year = time.getFullYear();
+				month = time.getMonth() + 1;
+				day = time.getDate();
+				h = time.getHours();
+				min = time.getMinutes();
+				s = time.getSeconds();
+				document.getElementById("time").innerText = year + '-' + month + '-' + day + ' ' + h + ':' + min + ':' + s;
+			}, 1000);
+			// 插件初始化
+			mui.init();
+			// 当h5+的插件加载完毕
+			mui.plusReady(function() {
+				document.getElementById("mynotes").addEventListener('tap', function() {
+					mui.openWindow({
+						url: '../main.html',
+						id: 'main'
+					});
+					event.stopPropagation();
+				});
+				document.getElementById("allnotes").addEventListener('tap', function() {
+					mui.openWindow({ //打开新界面
+						url: 'allnotes.html',
+						id: 'allnotes'
+					});
+					event.stopPropagation();
+				});
+
+			});
+
+			// 语音识别
+			mui.ready(function() {
+				mui('.mui-input-row textarea').input();
+			});
+
+			//从相册中选择图片
+			document.getElementById('Image').addEventListener('tap', function() {
+				if (mui.os.plus) {
+					var a = [{
+						title: "拍照"
+					}, {
+						title: "从手机相册选择"
+					}];
+					plus.nativeUI.actionSheet({
+						title: "上传图片",
+						cancel: "取消",
+						buttons: a
+					}, function(b) { /*actionSheet 按钮点击事件*/
+						switch (b.index) {
+							case 0:
+								break;
+							case 1:
+								getImage(); /*拍照*/
+								break;
+							case 2:
+								galleryImg(); /*打开相册*/
+								break;
+							default:
+								break;
+						}
+					})
+				}
+			}, false);
+
+			//拍照
+			function getImage() {
+				var c = plus.camera.getCamera();
+				c.captureImage(function(e) {
+					plus.io.resolveLocalFileSystemURL(e, function(entry) {
+						var s = entry.toLocalURL() + "?version=" + new Date().getTime();
+						uploadHead(s); /*上传图片*/
+					}, function(e) {
+						console.log("读取拍照文件错误：" + e.message);
+					});
+				}, function(s) {
+					console.log("error" + s);
+				}, {
+					filename: "_doc/head.png"
+				})
+			};
+			//本地相册选择
+			function galleryImg() {
+				plus.gallery.pick(function(a) {
+					plus.io.resolveLocalFileSystemURL(a, function(entry) {
+						plus.io.resolveLocalFileSystemURL("_doc/", function(root) {
+							root.getFile("head.png", {}, function(file) {
+								//文件已存在
+								file.remove(function() {
+									console.log("file remove success");
+									entry.copyTo(root, 'head.png', function(e) {
+											var e = e.fullPath + "?version=" + new Date().getTime();
+											uploadHead(e); /*上传图片*/
+											//变更大图预览的src
+											//目前仅有一张图片，暂时如此处理，后续需要通过标准组件实现
+										},
+										function(e) {
+											console.log('copy image fail:' + e.message);
+										});
+								}, function() {
+									console.log("delete image fail:" + e.message);
+								});
+							}, function() {
+								//文件不存在
+								entry.copyTo(root, 'head.png', function(e) {
+										var path = e.fullPath + "?version=" + new Date().getTime();
+										uploadHead(path); /*上传图片*/
+									},
+									function(e) {
+										console.log('copy image fail:' + e.message);
+									});
+							});
+						}, function(e) {
+							console.log("get _www folder fail");
+						})
+					}, function(e) {
+						console.log("读取拍照文件错误：" + e.message);
+					});
+				}, function(a) {}, {
+					filter: "image"
+				})
+			};
+
+			//判断是否公开
+			var para = document.createElement("p");
+			var node = document.createTextNode("您的日记将会被公开,且提交后不可更改为只自己可见");
+			para.appendChild(node);
+			para.className = "hint";
+			document.getElementById("mySwitch").addEventListener("toggle", function(event) {
+				if (event.detail.isActive) {
+					document.getElementsByClassName("mui-input-row")[0].insertBefore(para,document.getElementsByClassName("btn")[0]);
+				} else {
+					para.remove();
+				}
+			})
+		</script>
+	</body>
+
+</html>
