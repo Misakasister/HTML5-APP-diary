@@ -1,0 +1,41 @@
+			html {
+				touch-action: none;
+			}
+
+			#time {
+				text-align: right;
+			}
+
+			.mui-icon-speech {
+				margin-top: 50px;
+			}
+
+			textarea {
+				margin-bottom: 0px;
+			}
+
+			.pub {
+				padding-top: 10px;
+				font-size: 20px;
+				display: inline-block;
+				color: #AAAAAA;
+			}
+
+			button {
+				margin-top: 10px;
+				margin-bottom: 10px;
+				display: block;
+			}
+
+			.hint {
+				width: 100%;
+				color: red;
+				display: block;
+			}
+
+			.btn {
+				display: block !important;
+				margin-top: 10px;
+				margin-bottom: 10px;
+				width: 100% !important;
+			}

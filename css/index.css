@@ -1,0 +1,10 @@
+			/* 首页 我的日记 */
+			html {
+				touch-action: none;
+			}
+			.btn {
+				width: 95%;
+				display: block;
+				margin: 0 auto;
+				margin-top: 10px;
+			}

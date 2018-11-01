@@ -1,0 +1,40 @@
+/* mcard 补充样式 */
+.mui-card-header img {
+	margin-top: 10px;
+	margin-left: 10px;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	vertical-align: middle;
+}
+
+.mui-card {
+	margin-top: 10px;
+}
+
+
+.mui-card-content img {
+	width: 100%;
+}
+
+.mui-card-content p {
+	margin-top: 10px;
+	text-indent: 2em;
+}
+
+.mui-card-header p {
+	display: inline-block;
+	margin-left: 10px;
+}
+
+.mui-card-footer p {
+	text-align: right;
+}
+
+#main .user{
+	width: 80px !important;
+	height: 80px !important;
+	border-radius: 50% !important; 	
+}
+
+

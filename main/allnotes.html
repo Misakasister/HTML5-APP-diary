@@ -7,25 +7,16 @@
 		<title>首页</title>
 		<script src="../js/mui.min.js"></script>
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/mcard.css" />
+		<link rel="stylesheet" type="text/css" href="../css/aside.css" />
 		<style type="text/css">
 			/* 过滤preventDefault() */
 			html {
 				touch-action: none;
 			}
 
-
-			.p {
-				color: white;
-			}
-
-			.mui-card {
-				height: 200px;
-				margin-top: 10px;
-			}
-
-			.seat {
-				width: 100%;
-				height: 60px;
+			.mui-content {
+				margin-bottom: 55px;
 			}
 		</style>
 	</head>
@@ -38,21 +29,54 @@
 				<!-- 菜单容器 -->
 				<aside class="mui-off-canvas-left" id="leftnav">
 					<div class="mui-scroll-wrapper">
-						<div class="mui-scroll p">
-							这里这里fdsf
+						<div class="mui-scroll">
+							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541051887587&di=7a200062730988f1cd3e8421321d283c&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201507%2F29%2F20150729162450_JxXNt.jpeg"
+							 id="userImg">
+							<ul class="mui-table-view">
+								<li class="mui-table-view-cell">昵称：
+								</li>
+								<li class="mui-table-view-cell">总日记数：
+									<span class="mui-badge">0</span>
+								</li>
+								<li class="mui-table-view-cell">收到的赞数：
+									<span class="mui-badge">0</span>
+								</li>
+								<li class="mui-table-view-cell">注销
+								</li>
+							</ul>
 						</div>
 					</div>
 				</aside>
 				<!-- 主页面标题 -->
 				<header class="mui-bar mui-bar-nav">
 					<a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left" href="#leftnav"></a>
-					<h1 class="mui-title">大家的记录</h1>
+					<h1 class="mui-title">大家的日记</h1>
 				</header>
 				<!-- 主页面内容容器 -->
 				<div class="mui-content mui-scroll-wrapper">
 					<div class="mui-scroll">
 						<!-- 一条信息 -->
-						<div class="mui-card">
+						<a href="show.html">
+							<div class="mui-card">
+								<!--页眉，放置标题-->
+								<div class="mui-card-header">
+									<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541051887587&di=7a200062730988f1cd3e8421321d283c&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201507%2F29%2F20150729162450_JxXNt.jpeg">
+									<p>作者cccc</p>
+								</div>
+								<!--内容区-->
+								<div class="mui-card-content">
+									<p>今天天气不错</p>
+									<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541575837&di=21e71429bc51e257d4b9e7f10981cbd5&imgtype=jpg&er=1&src=http%3A%2F%2Fi1.sinaimg.cn%2Fgm%2Fn%2F2016-06-13%2F1465852833_ZQJC0Y.jpg">
+								</div>
+								<!--页脚，放置补充信息或支持的操作-->
+								<div class="mui-card-footer">
+									<p>时间</p>
+								</div>
+							</div>
+						</a>
+						<!-- 一条信息结束 -->
+						<!-- 一条信息 -->
+						<div class="mui-card" id="s2">
 							<!--页眉，放置标题-->
 							<div class="mui-card-header">页眉</div>
 							<!--内容区-->
@@ -121,71 +145,27 @@
 							<div class="mui-card-footer">页脚</div>
 						</div>
 						<!-- 一条信息结束 -->
-						<!-- 占位盒子 -->
-						<div class="seat">
-
-						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		<!-- 主题部分 -->
-		<div class="mui-content">
-			<div class="mui-card">
-				<!--页眉，放置标题-->
-				<div class="mui-card-header">页眉</div>
-				<!--内容区-->
-				<div class="mui-card-content">内容区</div>
-				<!--页脚，放置补充信息或支持的操作-->
-				<div class="mui-card-footer">页脚</div>
 			</div>
 		</div>
 		<!-- 底部导航 -->
 		<nav class="mui-bar mui-bar-tab">
 			<a class="mui-tab-item" id="mynotes">
 				<span class="mui-icon mui-icon-person"></span>
-				<span class="mui-tab-label">我的记录</span>
+				<span class="mui-tab-label">我的日记</span>
 			</a>
 			<a class="mui-tab-item mui-active" id="allnotes">
 				<span class="mui-icon mui-icon-checkbox"></span>
-				<span class="mui-tab-label">大家的记录</span>
+				<span class="mui-tab-label">大家的日记</span>
 			</a>
 			<a class="mui-tab-item" id="new">
 				<span class="mui-icon mui-icon-plusempty"></span>
-				<span class="mui-tab-label">新纪录</span>
+				<span class="mui-tab-label">新日记</span>
 			</a>
 		</nav>
 		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-			// 插件初始化
-			mui.init();
-			// 当h5+的插件加载完毕
-			mui.plusReady(function() {
-
-				document.getElementById("mynotes").addEventListener('tap', function() {
-					mui.openWindow({
-						url: '../main.html',
-						id: 'main'
-					});
-					event.stopPropagation();
-				});
-
-				document.getElementById("new").addEventListener('tap', function() {
-					mui.openWindow({
-						url: 'new.html',
-						id: 'new',
-					});
-					event.stopPropagation();
-				});
-
-				(function($) {
-					$(".mui-scroll-wrapper").scroll({
-						bounce: false, //滚动条是否有弹力默认是true
-						indicators: false, //是否显示滚动条,默认是true
-					});
-				})(mui);
-			});
-		</script>
+		<script src="../js/allnotes.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 
 </html>

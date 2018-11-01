@@ -5,10 +5,11 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title>首页</title>
-		<script src="../js/mui.min.js"></script>
-		<link href="../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="../css/aside.css"/>
-		<link rel="stylesheet" type="text/css" href="../css/new.css"/>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/aside.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/mcard.css"/>
 		<style type="text/css">
 		</style>
 	</head>
@@ -23,7 +24,7 @@
 					<div class="mui-scroll-wrapper">
 						<div class="mui-scroll">
 							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541051887587&di=7a200062730988f1cd3e8421321d283c&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201507%2F29%2F20150729162450_JxXNt.jpeg"
-							id="userImg">
+							 id="userImg">
 							<ul class="mui-table-view">
 								<li class="mui-table-view-cell">昵称：
 								</li>
@@ -42,44 +43,51 @@
 				<!-- 主页面标题 -->
 				<header class="mui-bar mui-bar-nav">
 					<a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left" href="#leftnav"></a>
-					<h1 class="mui-title">新日记</h1>
+					<h1 class="mui-title">我的日记</h1>
 				</header>
 				<!-- 主页面内容容器 -->
 				<div class="mui-content mui-scroll-wrapper">
-					<div class="mui-scroll">
-						<form class="mui-input-row" style="margin: 10px 5px;">
-							<input type="text" class="mui-input-clear mui-input-speech" placeholder="标题">
-							<textarea id="textarea" rows="5" placeholder="可以语音输入哦->" class="mui-input-speech mui-input-clear"></textarea>
-							<button type="button" id="Image">上传图片</button>
-							<p class="pub">是否公开</p>
-							<div class="mui-switch" id="mySwitch">
-								<div class="mui-switch-handle"></div>
+					<button id='pickDateBtn' type="button" data-loading-icon="mui-spinner mui-spinner-custom" class="mui-btn mui-btn-primary btn">筛选日期</button>
+					<!-- 一条信息 -->
+					<a href="main/show.html">
+						<div class="mui-card">
+							<!--页眉，放置标题-->
+							<div class="mui-card-header">
+								<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541051887587&di=7a200062730988f1cd3e8421321d283c&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201507%2F29%2F20150729162450_JxXNt.jpeg">
+								<p>作者cccc</p>
 							</div>
-							<button type="button" data-loading-icon="mui-spinner mui-spinner-custom" class="mui-btn mui-btn-primary btn">确认</button>
-						</form>
-						<p id="time"></p>
-					</div>
+							<!--内容区-->
+							<div class="mui-card-content">
+								<p>今天天气不错</p>
+								<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541575837&di=21e71429bc51e257d4b9e7f10981cbd5&imgtype=jpg&er=1&src=http%3A%2F%2Fi1.sinaimg.cn%2Fgm%2Fn%2F2016-06-13%2F1465852833_ZQJC0Y.jpg">
+							</div>
+							<!--页脚，放置补充信息或支持的操作-->
+							<div class="mui-card-footer">
+								<p>时间</p>
+							</div>
+						</div>
+					</a>
+					<!-- 一条信息结束 -->
 				</div>
 			</div>
 		</div>
-
 		<!-- 底部导航 -->
 		<nav class="mui-bar mui-bar-tab">
 			<a class="mui-tab-item" id="mynotes">
-				<span class="mui-icon mui-icon-person"></span>
+				<span class="mui-icon mui-icon-person mui-active"></span>
 				<span class="mui-tab-label">我的日记</span>
 			</a>
 			<a class="mui-tab-item" id="allnotes">
 				<span class="mui-icon mui-icon-checkbox"></span>
 				<span class="mui-tab-label">大家的日记</span>
 			</a>
-			<a class="mui-tab-item mui-active" id="new">
+			<a class="mui-tab-item" id="new">
 				<span class="mui-icon mui-icon-plusempty"></span>
 				<span class="mui-tab-label">新日记</span>
 			</a>
 		</nav>
-		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../js/new.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 
 </html>
